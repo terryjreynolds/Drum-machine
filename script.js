@@ -1,5 +1,16 @@
-document.addEventListener("keydown", function(e) {
-  var key = e.key;
+const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
+
+buttons.map(c => setUpEventListener(c));
+function setUpEventListener(listItem) {
+  document
+    .querySelector("li." + listItem)
+    .addEventListener("click", function() {
+      cloneAndPlay(listItem);
+    });
+}
+
+document.addEventListener("keypress", function(e) {
+  const key = e.key;
   console.log(key);
   if (
     key === "a" ||
@@ -11,13 +22,18 @@ document.addEventListener("keydown", function(e) {
     key === "j" ||
     key === "k"
   ) {
-    playClip(key);
+    cloneAndPlay(key);
   }
 });
 
-function playClip(letter) {
-  console.log("letter", letter);
-  let x = document.getElementById(letter);
-
-  x.play();
+//the idea here is on every click or keypress the sound clip node
+//gets cloned so a new one can fire even while the first one
+//plays on
+function cloneAndPlay(letter) {
+  console.log("clone");
+  let newSound = document.querySelector("#" + letter);
+  console.log("newSound", newSound);
+  let clip = newSound.cloneNode(true);
+  console.log("clip", clip);
+  clip.play();
 }
