@@ -36,5 +36,4 @@ function cloneAndPlay(letter) {
   let clip = newSound.cloneNode(true);
   console.log("clip", clip);
   clip.play();
-  clip.preload = true;
 }
