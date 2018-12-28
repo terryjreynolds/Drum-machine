@@ -1,5 +1,5 @@
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
-
+//listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
 function setUpEventListener(listItem) {
   document
@@ -8,7 +8,7 @@ function setUpEventListener(listItem) {
       cloneAndPlay(listItem);
     });
 }
-
+//listen for key presses
 document.addEventListener("keypress", function(e) {
   const key = e.key;
   console.log(key);

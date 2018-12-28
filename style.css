@@ -42,7 +42,7 @@ li:hover {
   box-shadow: 0px 0px 5px 5px rgb(2, 248, 215);
 }
 h1 {
-  font-size: 5vw;
+  font-size: calc(20px + (54 - 18) * ((100vw - 300px) / (1600 - 300)));
   letter-spacing: 0.3vw;
   margin: 0 1vw 1vw 1vw;
 
@@ -52,6 +52,7 @@ h1 {
   text-shadow: 4px 4px black;
 }
 h2 {
+  font-size: calc(6px + (26 - 6) * ((100vw - 300px) / (1600 - 300)));
   text-align: center;
   color: whitesmoke;
   text-shadow: 2px 2px black;
@@ -59,6 +60,7 @@ h2 {
 p {
   color: rgb(184, 184, 22);
 }
+/*------------FOOTER------------------*/
 footer {
   position: absolute;
   bottom: 0;
@@ -68,10 +70,35 @@ footer {
   color: whitesmoke;
   text-shadow: 1px 1px black;
 }
+
 .photoCredit {
-  font-size: 0.8vw;
+  font-size: calc(6px + (12 - 6) * ((100vw - 300px) / (1600 - 300)));
+}
+.wes {
+  font-size: calc(6px + (12 - 6) * ((100vw - 300px) / (1600 - 300)));
 }
 footer p {
   color: whitesmoke;
   margin: 0;
+}
+/*------------MEDIA QUERIES------------------*/
+@media only screen and (max-width: 415px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 22vw;
+  }
+  .container {
+    width: 85%;
+  }
+  header {
+    padding-top: 15vw;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  ul {
+    margin-top: 2vw;
+  }
+  header {
+    padding-top: 2vw;
+  }
 }
