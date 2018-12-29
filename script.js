@@ -2,7 +2,7 @@ preloadImg();
 function preloadImg() {
   console.log("preload");
   const myImage = new Image();
-  myImage.onload = changeImg;
+  myImage.onload = changeImg(myImage);
   myImage.src = "img/audience.jpg";
 }
 function changeImg() {
