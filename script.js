@@ -7,6 +7,7 @@ function preloadImg() {
 }
 function changeImg(img) {
   console.log("changeImg", img);
+  document.getElementById("mainBgd").src = "img/audience.jpg";
 }
 
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
