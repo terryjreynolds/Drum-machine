@@ -17,7 +17,17 @@
   
 
   <body>
-    
+    <script>preloadImg();
+      function preloadImg() {
+        console.log("preload");
+        const myImage = new Image();
+        myImage.src = "img/audience.jpg";
+        myImage.onload = changeImg;
+      }
+      function changeImg() {
+        console.log("changeImg");
+        document.getElementById("mainBgd").src = "img/audience.jpg";
+      }</script>
     <audio id="a" >
         <source   src="sounds/clap.wav" type="audio/wav">
             </audio>

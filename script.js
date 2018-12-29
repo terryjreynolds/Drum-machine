@@ -1,15 +1,3 @@
-preloadImg();
-function preloadImg() {
-  console.log("preload");
-  const myImage = new Image();
-  myImage.src = "img/audience.jpg";
-  myImage.onload = changeImg;
-}
-function changeImg() {
-  console.log("changeImg");
-  document.getElementById("mainBgd").src = "img/audience.jpg";
-}
-
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
