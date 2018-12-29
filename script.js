@@ -1,15 +1,13 @@
-const my_image = new Image();
-
-function showHDBackground() {
-  console.log("showing");
-  document.querySelector("div.container").style.background = my_image.src;
+preloadImg();
+function preloadImg() {
+  console.log("preload");
+  const myImage = new Image();
+  myImage.onload = changeImg;
+  myImage.src = "img/audience.jpg";
 }
-
-function loadImage() {
-  my_image.src = "img/audience.jpg";
-  my_image.onload = showHDBackground;
+function changeImg() {
+  console.log("changeImg");
 }
-loadImage();
 
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
