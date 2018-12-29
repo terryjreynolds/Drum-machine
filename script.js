@@ -2,11 +2,11 @@ preloadImg();
 function preloadImg() {
   console.log("preload");
   const myImage = new Image();
-  myImage.onload = changeImg(myImage);
+  myImage.onload = changeImg();
   myImage.src = "img/audience.jpg";
 }
-function changeImg(img) {
-  console.log("changeImg", img);
+function changeImg() {
+  console.log("changeImg");
   document.getElementById("mainBgd").src = "img/audience.jpg";
 }
 
