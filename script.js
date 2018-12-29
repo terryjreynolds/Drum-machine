@@ -1,3 +1,16 @@
+const my_image = new Image();
+
+function showHDBackground() {
+  console.log("showing");
+  document.querySelector("div.container").style.background = my_image.src;
+}
+
+function loadImage() {
+  my_image.src = "img/audience.jpg";
+  my_image.onload = showHDBackground;
+}
+loadImage();
+
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));

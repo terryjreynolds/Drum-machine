@@ -12,12 +12,12 @@ body {
   margin: 0 auto;
   width: 75%;
   height: 100vh;
-  background-image: url(img/audience-small.jpg);
-  background-position: left center;
-  background-attachment: fixed;
-  background-size: cover;
   opacity: 0.5;
+  font-size: 0;
+  background-image: url("img/audience-small.jpg");
+  background-size: cover;
 }
+
 header {
   padding-top: 3vw;
 }
@@ -82,6 +82,27 @@ footer p {
   color: whitesmoke;
   margin: 0;
   font-size: calc(10px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
+}
+/*-------------ANIMATIONS--------------------*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.audienceFadeInOnLoad {
+  width: 100%;
+  animation: fadeIn 1s;
+}
+.audienceHidden {
+  display: none;
+}
+.smallAudience {
+  width: 100%;
+  filter: blur(20px);
 }
 /*------------MEDIA QUERIES------------------*/
 @media only screen and (max-width: 415px) {
