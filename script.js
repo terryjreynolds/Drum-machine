@@ -5,8 +5,8 @@ function preloadImg() {
   myImage.onload = changeImg(myImage);
   myImage.src = "img/audience.jpg";
 }
-function changeImg() {
-  console.log("changeImg");
+function changeImg(img) {
+  console.log("changeImg", img);
 }
 
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
