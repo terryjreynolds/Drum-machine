@@ -1,5 +1,9 @@
 const cacheName = "v1";
 const cacheAssets = [
+  "/index.html",
+
+  "/script.js",
+  "img/audience.jpg",
   "sounds/clap.wav",
   "sounds/hi-hat.wav",
   "sounds/kick.mp3",
@@ -42,4 +46,14 @@ self.addEventListener("activate", e => {
     })
   );
 });
-//hi
+//Call Fetch event
+self.addEventListener("fetch", e => {
+  console.log("Service Worker: Fetching");
+  console.log(e.request.url);
+
+  e.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
+    })
+  );
+});
