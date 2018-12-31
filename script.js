@@ -1,3 +1,15 @@
+//---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
+
+//Register the Service Worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw_sound_effects.js")
+      .then(reg => console.log("Service Worker: Registered"))
+      .catch(err => console.log(`Service Worker: Error: ${err}`));
+  });
+}
+//----------------Page Logic----------------------
 const bigPic = document.getElementById("HDBgd");
 bigPic.addEventListener("load", showHDImage);
 
