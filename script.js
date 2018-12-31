@@ -37,3 +37,9 @@ function cloneAndPlay(letter) {
   console.log("clip", clip);
   clip.play();
 }
+function chgImg() {
+  console.log("changeImg");
+  const audience = document.getElementById("mainBgd");
+  audience.setAttribute("src", "img/audience.jpg");
+  audience.setAttribute("class", "fadeInOnLoad");
+}
