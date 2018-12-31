@@ -1,11 +1,16 @@
-window.onload = function() {
+const loadedImg = document.getElementById("otherMainBgd");
+
+loadedImg.onload = function() {
+  console.log("onload");
   chgImg();
 };
 function chgImg() {
   console.log("changeImg");
-  const audience = document.getElementById("mainBgd");
-  audience.setAttribute("src", "img/audience.jpg");
-  audience.setAttribute("class", "fadeInOnLoad");
+  const blurred_audience = document.getElementById("mainBgd");
+  const HD_audience = document.getElementById("otherMainBgd");
+  blurred_audience.display = "none";
+  HD_audience.display = "";
+  HD_audience.setAttribute("class", "fadeInOnLoad");
 }
 
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
