@@ -42,12 +42,12 @@ self.addEventListener("activate", e => {
     })
   );
 });
-//Call Fetch Event--the idea here is to fetch sound effects from //cache to eliminate network lag
+//Call Fetch Event
 self.addEventListener("fetch", e => {
   console.log("Service Worker: Fetching");
   e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
+    fetch(caches.match(e.request)).then(response => {
+      return response;
     })
   );
 });
