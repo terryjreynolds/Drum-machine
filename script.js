@@ -1,3 +1,13 @@
+window.onload = function() {
+  chgImg();
+};
+function chgImg() {
+  console.log("changeImg");
+  const audience = document.getElementById("mainBgd");
+  audience.setAttribute("src", "img/audience.jpg");
+  audience.setAttribute("class", "fadeInOnLoad");
+}
+
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
@@ -36,10 +46,4 @@ function cloneAndPlay(letter) {
   let clip = newSound.cloneNode(true);
   console.log("clip", clip);
   clip.play();
-}
-function chgImg() {
-  console.log("changeImg");
-  const audience = document.getElementById("mainBgd");
-  audience.setAttribute("src", "img/audience.jpg");
-  audience.setAttribute("class", "fadeInOnLoad");
 }
