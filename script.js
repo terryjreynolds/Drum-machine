@@ -8,8 +8,8 @@ function chgImg() {
   console.log("changeImg");
   const blurred_audience = document.getElementById("mainBgd");
   const HD_audience = document.getElementById("otherMainBgd");
-  blurred_audience.display = "none";
-  HD_audience.display = "";
+  blurred_audience.setAttribute("display", "none");
+  HD_audience.setAttribute("display", "");
   HD_audience.setAttribute("class", "fadeInOnLoad");
 }
 
