@@ -42,12 +42,3 @@ self.addEventListener("activate", e => {
     })
   );
 });
-//Call Fetch Event
-self.addEventListener("fetch", e => {
-  console.log("Service Worker: Fetching");
-  e.respondWith(
-    fetch(caches.match(e.request)).then(response => {
-      return response;
-    })
-  );
-});
