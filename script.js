@@ -1,18 +1,12 @@
-const loadedImg = document.getElementById("otherMainBgd");
+const bigPic = document.getElementById("HDBgd");
+bigPic.addEventListener("load", showHDImage);
 
-loadedImg.onload = function() {
-  console.log("onload");
-  chgImg();
-};
-function chgImg() {
-  console.log("changeImg");
-  const blurred_audience = document.getElementById("mainBgd");
-  const HD_audience = document.getElementById("otherMainBgd");
-  blurred_audience.setAttribute("display", "none");
-  HD_audience.setAttribute("display", "");
-  HD_audience.setAttribute("class", "fadeInOnLoad");
+function showHDImage() {
+  const little = document.getElementById("LRBgd");
+  const big = document.getElementById("HDBgd");
+  little.className = "audienceHidden";
+  big.className = "mainBackground";
 }
-
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
