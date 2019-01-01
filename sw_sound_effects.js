@@ -1,17 +1,18 @@
 const cacheName = "v1";
 const cacheAssets = [
-  "/index.html",
+  './'
+  "./index.html",
 
-  "/script.js",
-  "img/audience.jpg",
-  "sounds/clap.wav",
-  "sounds/hi-hat.wav",
-  "sounds/kick.mp3",
-  "sounds/openhat.wav",
-  "sounds/orchhit.wav",
-  "sounds/ride.wav",
-  "sounds/snare.wav",
-  "sounds/tom.wav"
+  "./script.js",
+  "./img/audience.jpg",
+  "./sounds/clap.wav",
+  "./sounds/hi-hat.wav",
+  "./sounds/kick.mp3",
+  "./sounds/openhat.wav",
+  "./sounds/orchhit.wav",
+  "./sounds/ride.wav",
+  "./sounds/snare.wav",
+  "./sounds/tom.wav"
 ];
 
 //Call Install event
