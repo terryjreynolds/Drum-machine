@@ -9,6 +9,12 @@ if ("serviceWorker" in navigator) {
   });
 }
 //----------------Page Logic----------------------
+
+//check if is a touchscreen device
+var deviceIsTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+console.log("deviceistouch", deviceIsTouch);
+
+//loading HD background image
 const bigPic = document.getElementById("HDBgd");
 bigPic.addEventListener("load", showHDImage);
 
@@ -22,12 +28,21 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
 function setUpEventListener(listItem) {
-  document
-    .querySelector("li." + listItem)
-    .addEventListener("click", function() {
-      cloneAndPlay(listItem);
-    });
+  if (deviceIsTouch) {
+    document
+      .querySelector("li." + listItem)
+      .addEventListener("touchstart", function() {
+        cloneAndPlay(listItem);
+      });
+  } else {
+    document
+      .querySelector("li." + listItem)
+      .addEventListener("click", function() {
+        cloneAndPlay(listItem);
+      });
+  }
 }
+
 //listen for key presses
 document.addEventListener("keypress", function(e) {
   const key = e.key;
