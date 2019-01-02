@@ -60,6 +60,7 @@ function playAudio(letter) {
   let key = document.querySelector(`#${letter}`);
   console.log("key", key);
   let clip = newSound.cloneNode(true);
+  clip.currentTime = 0;
   clip.play();
   key.classList.add("playing");
 }
