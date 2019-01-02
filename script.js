@@ -1,7 +1,7 @@
 //check if touchscreen
 const userIsTouching = false;
 window.addEventListener("touchstart", function onFirstTouch() {
-  userIsTouching = true;
+  window.userIsTouching = true;
 });
 
 function remove() {
