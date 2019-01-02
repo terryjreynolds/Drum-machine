@@ -13,7 +13,7 @@ if ("serviceWorker" in navigator) {
 //check if is a touchscreen device
 var deviceIsTouchScreen =
   "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
-console.log("deviceistouch", deviceIsTouch);
+console.log("deviceistouch", deviceIsTouchScreen);
 
 //loading HD background image
 const bigPic = document.getElementById("HDBgd");
