@@ -11,7 +11,8 @@ if ("serviceWorker" in navigator) {
 //----------------Page Logic----------------------
 
 //check if is a touchscreen device
-var deviceIsTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+var deviceIsTouchScreen =
+  "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 console.log("deviceistouch", deviceIsTouch);
 
 //loading HD background image
@@ -29,10 +30,21 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  console.log(document.querySelector(`#${listItem}`));
-  document.querySelector(`#${listItem}`).addEventListener("click", function() {
-    playAudio(listItem);
-  });
+  if (deviceIsTouchScreen) {
+    console.log(document.querySelector(`#${listItem}`));
+    document
+      .querySelector(`#${listItem}`)
+      .addEventListener("click", function() {
+        playAudio(listItem);
+      });
+  } else {
+    console.log(document.querySelector(`#${listItem}`));
+    document
+      .querySelector(`#${listItem}`)
+      .addEventListener("click", function() {
+        playAudio(listItem);
+      });
+  }
 }
 
 //listen for key presses
