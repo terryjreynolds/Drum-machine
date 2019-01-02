@@ -2,7 +2,7 @@
 const userIsTouching = false;
 window.addEventListener("touchstart", function onFirstTouch() {
   userIsTouching = true;
-  document.getElementsByTagName("h1")[0].innerHTML = "touching";
+  alert("useristouching");
 });
 
 function remove() {
