@@ -11,7 +11,7 @@ if ("serviceWorker" in navigator) {
 //----------------Page Logic----------------------
 
 //check if is a touchscreen device
-var deviceIsTouchScreen =
+const deviceIsTouchScreen =
   "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 console.log("deviceistouch", deviceIsTouchScreen);
 
