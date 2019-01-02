@@ -1,5 +1,6 @@
 const cacheName = "v1";
 const cacheAssets = [
+  "./",
   "sounds/clap.wav",
   "sounds/hi-hat.wav",
   "sounds/kick.mp3",
