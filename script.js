@@ -1,3 +1,7 @@
+//check if touchscreen
+const isTouchScreen =
+  "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
@@ -25,6 +29,14 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
+  if (isTouchScreen) {
+    console.log(document.querySelector(`#${listItem}`));
+    document
+      .querySelector(`#${listItem}`)
+      .addEventListener("touchstart", function() {
+        playAudio(listItem);
+      });
+  }
   console.log(document.querySelector(`#${listItem}`));
   document.querySelector(`#${listItem}`).addEventListener("click", function() {
     playAudio(listItem);
