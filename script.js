@@ -3,20 +3,10 @@ function isTouchDevice() {
   return "ontouchstart" in document.documentElement;
 }
 
-function remove() {
-  window.removeEventListener("touchstart", onFirstTouch);
-}
-
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw_sound_effects.js").then(() => {
-      console.log("Service Worker Registered");
-    });
-  });
-}
+
 //----------------Page Logic----------------------
 
 //loading HD background image
