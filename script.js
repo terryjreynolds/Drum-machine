@@ -14,11 +14,6 @@ if ("serviceWorker" in navigator) {
 }
 //----------------Page Logic----------------------
 
-//check if is a touchscreen device
-const deviceIsTouchScreen =
-  "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
-console.log("deviceistouch", deviceIsTouchScreen);
-
 //loading HD background image
 const bigPic = document.getElementById("HDBgd");
 bigPic.addEventListener("load", showHDImage);
@@ -64,8 +59,8 @@ function playAudio(letter) {
   let newSound = document.querySelector(`.${letter}`);
   let key = document.querySelector(`#${letter}`);
   console.log("key", key);
-  newSound.currentTime = 0; //rewind to the start of the clip
-  newSound.play();
+  let clip = newSound.cloneNode(true);
+  clip.play();
   key.classList.add("playing");
 }
 function removeTransition(e) {
