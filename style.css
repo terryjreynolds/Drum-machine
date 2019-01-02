@@ -47,7 +47,7 @@ ul {
   display: inline-block;
   border: solid black;
   transition: all 0.05s;
-  touch-action: manipulation;
+  touch-action: none;
 }
 li:hover {
   cursor: pointer;
