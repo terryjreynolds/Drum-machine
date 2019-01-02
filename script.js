@@ -34,7 +34,7 @@ function setUpEventListener(listItem) {
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
-      .addEventListener("click", function() {
+      .addEventListener("touchstart", function() {
         playAudio(listItem);
       });
   } else {
