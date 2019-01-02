@@ -1,15 +1,15 @@
 //check if touchscreen
-let USER_IS_TOUCHING = window.addEventListener(
-  "touchstart",
-  function onFirstTouch() {
+const userIsTouching = false;
+window.addEventListener("touchstart", function onFirstTouch() {
+  userIsTouching = true;
+  document.getElementsByTagName("h1").innerHTML = "touching";
 
-    return true;
-  }
+  remove();
+});
 
-    window.removeEventListener(onFirstTouch);
-);
-if (USER_IS_TOUCHING) {document.getElementsByTagName("h1").innerhtml = "touching";}
-
+function remove() {
+  window.removeEventListener("touchstart", onFirstTouch);
+}
 
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
@@ -39,7 +39,7 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  if (isTouchScreen) {
+  if (userIsTouching) {
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
