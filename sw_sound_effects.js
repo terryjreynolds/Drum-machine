@@ -2,8 +2,6 @@ const cacheName = "v1";
 const cacheAssets = [
   "./",
   "/index.html",
-  "/script.js",
-  "/style.css",
   "sounds/clap.wav",
   "sounds/hi-hat.wav",
   "sounds/kick.mp3",
