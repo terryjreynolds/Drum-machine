@@ -2,7 +2,6 @@
 const userIsTouching = false;
 window.addEventListener("touchstart", function onFirstTouch() {
   userIsTouching = true;
-  alert("useristouching");
 });
 
 function remove() {
@@ -37,17 +36,21 @@ buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
   if (userIsTouching) {
+    document.getElementsByTagName("h1")[0].innerHTML = "touched";
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
       .addEventListener("touchstart", function() {
         playAudio(listItem);
       });
+  } else {
+    console.log(document.querySelector(`#${listItem}`));
+    document
+      .querySelector(`#${listItem}`)
+      .addEventListener("click", function() {
+        playAudio(listItem);
+      });
   }
-  console.log(document.querySelector(`#${listItem}`));
-  document.querySelector(`#${listItem}`).addEventListener("click", function() {
-    playAudio(listItem);
-  });
 }
 
 //listen for key presses
