@@ -9,7 +9,7 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw_sound_effects.js").then(() => {
       console.log("Service Worker Registered");
-      console.log("github1");
+      console.log("github2");
     });
   });
 }
@@ -34,7 +34,7 @@ function setUpEventListener(listItem) {
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
-      .addEventListener("touchstart", function() {
+      .addEventListener("touchend", function() {
         playAudio(listItem);
       });
   }
