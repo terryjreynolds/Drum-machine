@@ -1,7 +1,3 @@
-//-------------Instantiate FASTCLICK--------------
-const attachFastClick = Origami.fastclick;
-attachFastClick(document.body);
-
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
