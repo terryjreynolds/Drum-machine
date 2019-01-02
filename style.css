@@ -41,15 +41,18 @@ ul {
   margin-top: 8vw;
   z-index: 10;
 }
-li {
+.key {
   background-color: rgb(6, 218, 246);
   opacity: 0.9;
   display: inline-block;
   border: solid black;
+  transition: all 0.05s;
 }
 li:hover {
   cursor: pointer;
   opacity: 1;
+}
+.playing {
   transform: scale(1.1);
   box-shadow: 0px 0px 5px 5px rgb(2, 248, 215);
 }

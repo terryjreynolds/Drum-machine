@@ -27,26 +27,18 @@ function showHDImage() {
 const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 //listen for mouse clicks
 buttons.map(c => setUpEventListener(c));
+
 function setUpEventListener(listItem) {
-  if (deviceIsTouch) {
-    document
-      .querySelector("li." + listItem)
-      .addEventListener("touchstart", function() {
-        cloneAndPlay(listItem);
-      });
-  } else {
-    document
-      .querySelector("li." + listItem)
-      .addEventListener("click", function() {
-        cloneAndPlay(listItem);
-      });
-  }
+  console.log(document.querySelector(`#${listItem}`));
+  document.querySelector(`#${listItem}`).addEventListener("click", function() {
+    playAudio(listItem);
+  });
 }
 
 //listen for key presses
-document.addEventListener("keypress", function(e) {
+document.addEventListener("keydown", function(e) {
   const key = e.key;
-  console.log(key);
+  console.log("key", key);
   if (
     key === "a" ||
     key === "s" ||
@@ -57,18 +49,24 @@ document.addEventListener("keypress", function(e) {
     key === "j" ||
     key === "k"
   ) {
-    cloneAndPlay(key);
+    playAudio(key);
   }
 });
 
-//the idea here is on every click or keypress the sound clip node
-//gets cloned so a new one can fire even while the first one
-//plays on
-function cloneAndPlay(letter) {
-  console.log("clone");
-  let newSound = document.querySelector("#" + letter);
-  console.log("newSound", newSound);
-  let clip = newSound.cloneNode(true);
-  console.log("clip", clip);
-  clip.play();
+function playAudio(letter) {
+  console.log("letter", letter);
+
+  let newSound = document.querySelector(`.${letter}`);
+  let key = document.querySelector(`#${letter}`);
+  console.log("key", key);
+  newSound.currentTime = 0; //rewind to the start of the clip
+  newSound.play();
+  key.classList.add("playing");
 }
+function removeTransition(e) {
+  if (e.propertyName !== "transform") return;
+  this.classList.remove("playing");
+}
+
+const keys = document.querySelectorAll(".key");
+keys.forEach(key => key.addEventListener("transitionend", removeTransition));
