@@ -1,8 +1,7 @@
 //check if touchscreen
-const userIsTouching = false;
-window.addEventListener("touchstart", function onFirstTouch() {
-  window.userIsTouching = true;
-});
+function isTouchDevice() {
+  return "ontouchstart" in document.documentElement;
+}
 
 function remove() {
   window.removeEventListener("touchstart", onFirstTouch);
@@ -35,7 +34,7 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  if (userIsTouching) {
+  if (isTouchDevice()) {
     document.getElementsByTagName("h1")[0].innerHTML = "touched";
     console.log(document.querySelector(`#${listItem}`));
     document
