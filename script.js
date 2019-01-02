@@ -1,3 +1,14 @@
+//-------------Instantiate FASTCLICK--------------
+if ("addEventListener" in document) {
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+      FastClick.attach(document.body);
+    },
+    false
+  );
+}
+
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
@@ -30,21 +41,10 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  if (deviceIsTouchScreen) {
-    console.log(document.querySelector(`#${listItem}`));
-    document
-      .querySelector(`#${listItem}`)
-      .addEventListener("touchstart", function() {
-        playAudio(listItem);
-      });
-  } else {
-    console.log(document.querySelector(`#${listItem}`));
-    document
-      .querySelector(`#${listItem}`)
-      .addEventListener("click", function() {
-        playAudio(listItem);
-      });
-  }
+  console.log(document.querySelector(`#${listItem}`));
+  document.querySelector(`#${listItem}`).addEventListener("click", function() {
+    playAudio(listItem);
+  });
 }
 
 //listen for key presses

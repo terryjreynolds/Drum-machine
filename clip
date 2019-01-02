@@ -1,6 +1,13 @@
 
 
-
+if (deviceIsTouchScreen) {
+    console.log(document.querySelector(`#${listItem}`));
+    document
+      .querySelector(`#${listItem}`)
+      .addEventListener("touchstart", function() {
+        playAudio(listItem);
+      });
+  } else {
 
 
 
