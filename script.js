@@ -35,7 +35,6 @@ buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
   if (isTouchDevice()) {
-    document.getElementsByTagName("h1")[0].innerHTML = "touched";
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
@@ -43,7 +42,7 @@ function setUpEventListener(listItem) {
         playAudio(listItem);
       });
   } else {
-    console.log(document.querySelector(`#${listItem}`));
+    console.log("its a desktop");
     document
       .querySelector(`#${listItem}`)
       .addEventListener("click", function() {
