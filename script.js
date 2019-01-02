@@ -1,13 +1,6 @@
 //-------------Instantiate FASTCLICK--------------
-if ("addEventListener" in document) {
-  document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-      FastClick.attach(document.body);
-    },
-    false
-  );
-}
+const attachFastClick = Origami.fastclick;
+attachFastClick(document.body);
 
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
