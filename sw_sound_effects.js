@@ -1,9 +1,9 @@
 const cacheName = "v1";
 const cacheAssets = [
   "./",
-  "/index.html",
-  "/script.js",
-  "/style.css",
+  "./index.html",
+  "./script.js",
+  "./style.css",
   "img/icons/icon-128x128.png",
   "img/icons/icon-144x144.png",
   "img/icons/icon-152x152.png",
@@ -56,7 +56,6 @@ self.addEventListener("activate", e => {
 //Call Fetch event
 self.addEventListener("fetch", e => {
   console.log("Service Worker: Fetching");
-  console.log(e.request.url);
 
   e.respondWith(
     caches.match(e.request).then(function(response) {
