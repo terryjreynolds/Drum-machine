@@ -1,6 +1,15 @@
 //check if touchscreen
-const isTouchScreen =
-  "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+let USER_IS_TOUCHING = window.addEventListener(
+  "touchstart",
+  function onFirstTouch() {
+
+    return true;
+  }
+
+    window.removeEventListener(onFirstTouch);
+);
+if (USER_IS_TOUCHING) {document.getElementsByTagName("h1").innerhtml = "touching";}
+
 
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
