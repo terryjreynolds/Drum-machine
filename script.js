@@ -30,11 +30,9 @@ buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
   console.log(document.querySelector(`#${listItem}`));
-  document
-    .querySelector(`#${listItem}`)
-    .addEventListener("mousedown", function() {
-      playAudio(listItem);
-    });
+  document.querySelector(`#${listItem}`).addEventListener("click", function() {
+    playAudio(listItem);
+  });
 }
 
 //listen for key presses
