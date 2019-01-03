@@ -1,8 +1,9 @@
-//check if touchscreen
-function isTouchDevice() {
-  return "ontouchstart" in document.documentElement;
-}
+isTouchDevice = false;
 
+//check if touchscreen
+if ("ontouchstart" in document.documentElement) {
+  isTouchDevice = true;
+}
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
@@ -24,7 +25,7 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  if (isTouchDevice()) {
+  if (isTouchDevice) {
     console.log(document.querySelector(`#${listItem}`));
     document
       .querySelector(`#${listItem}`)
