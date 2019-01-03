@@ -1,3 +1,14 @@
+forceLoad();
+
+function forceLoad() {
+  console.log("in forceload");
+  const a = document.querySelector(".a");
+  console.log("a", a);
+  a.play();
+  a.pause();
+  a.currentTime = 0.5;
+}
+
 isTouchDevice = false;
 
 //check if touchscreen
