@@ -1,6 +1,4 @@
-window.onload = function() {
-  forceLoad();
-};
+forceLoad();
 
 function forceLoad() {
   console.log("in forceload");
@@ -10,7 +8,7 @@ function forceLoad() {
   setTimeout(function() {
     a.pause();
     console.log("paused");
-  }, 300);
+  }, 1);
 }
 
 isTouchDevice = false;
