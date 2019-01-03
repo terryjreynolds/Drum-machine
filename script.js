@@ -1,12 +1,16 @@
-forceLoad();
+window.onload = function() {
+  forceLoad();
+};
 
 function forceLoad() {
   console.log("in forceload");
   const a = document.querySelector(".a");
   console.log("a", a);
   a.play();
-
-  a.currentTime = 0.5;
+  setTimeout(function() {
+    a.pause();
+    console.log("paused");
+  }, 300);
 }
 
 isTouchDevice = false;
