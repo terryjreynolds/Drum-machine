@@ -66,8 +66,8 @@ function playAudio(letter) {
   let newSound = document.querySelector(`.${letter}`);
   let key = document.querySelector(`#${letter}`);
   console.log("key", key);
-  let clip = newSound.cloneNode(true);
-  clip.play();
+  newSound.currentTime = 0;
+  newSound.play();
   key.classList.add("playing");
 }
 function removeTransition(e) {
