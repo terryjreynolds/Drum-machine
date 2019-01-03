@@ -6,17 +6,11 @@ function forceLoad() {
   console.log("a", a);
   a.play();
   setTimeout(function() {
-    a.pause();
     console.log("paused");
-  }, 1);
+    console.log("a ready state:", a.readyState);
+  }, 1000);
 }
 
-isTouchDevice = false;
-
-//check if touchscreen
-if ("ontouchstart" in document.documentElement) {
-  isTouchDevice = true;
-}
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
@@ -38,21 +32,10 @@ const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  if (isTouchDevice) {
-    console.log(document.querySelector(`#${listItem}`));
-    document
-      .querySelector(`#${listItem}`)
-      .addEventListener("touchstart", function() {
-        playAudio(listItem);
-      });
-  } else {
-    console.log("its a desktop");
-    document
-      .querySelector(`#${listItem}`)
-      .addEventListener("click", function() {
-        playAudio(listItem);
-      });
-  }
+  console.log("its a desktop");
+  document.querySelector(`#${listItem}`).addEventListener("click", function() {
+    playAudio(listItem);
+  });
 }
 
 //listen for key presses
@@ -80,9 +63,9 @@ function playAudio(letter) {
 
   let key = document.querySelector(`#${letter}`);
   console.log("key", key);
-  let clip = newSound.cloneNode(true);
-  clip.play();
-  forceLoad();
+
+  newSound.play();
+  newSound.currentTime = 0.1;
   const readyState = newSound.readyState;
   console.log("readyState:", readyState);
   document.getElementsByTagName("h1")[0].innerHTML = `${readyState}`;
