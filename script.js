@@ -5,7 +5,7 @@ function forceLoad() {
   const a = document.querySelector(".a");
   console.log("a", a);
   a.play();
-  a.pause();
+
   a.currentTime = 0.5;
 }
 
@@ -80,6 +80,7 @@ function playAudio(letter) {
   console.log("key", key);
   let clip = newSound.cloneNode(true);
   clip.play();
+  forceLoad();
   const readyState = newSound.readyState;
   console.log("readyState:", readyState);
   document.getElementsByTagName("h1")[0].innerHTML = `${readyState}`;
