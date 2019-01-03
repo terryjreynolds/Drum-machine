@@ -64,11 +64,14 @@ function playAudio(letter) {
   console.log("letter", letter);
 
   let newSound = document.querySelector(`.${letter}`);
+
   let key = document.querySelector(`#${letter}`);
   console.log("key", key);
   let clip = newSound.cloneNode(true);
   clip.play();
-  newSound.load();
+  const readyState = newSound.readyState;
+  console.log("readyState:", readyState);
+  document.getElementsByTagName("h1")[0].innerHTML = `${readyState}`;
   key.classList.add("playing");
 }
 function removeTransition(e) {
