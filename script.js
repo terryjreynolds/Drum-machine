@@ -136,7 +136,7 @@ function playAudio(audioSource) {
   source.buffer = requestedSound;
   //connect ABSN to destination so we can hear it
   source.connect(audioCtx.destination);
-  source.start();
+  source.start(0);
   document.querySelector(`#${audioSource}`).classList.add("playing");
 }
 
