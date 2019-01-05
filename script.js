@@ -8,7 +8,7 @@ window.myClips = new Map();
 document.querySelector(".power").addEventListener("click", () => {
   window.audioCont = window.AudioContext || window.webkitAudioContext;
   audioCtx = new audioCont();
-  document.querySelector("h1").innerHTML = audioCtx;
+  document.querySelector("h1").innerHTML = audioCtx.state;
   console.log("theaudiocontext:", audioCtx);
   //create dummy sound
   var oscillator = audioCtx.createOscillator();
