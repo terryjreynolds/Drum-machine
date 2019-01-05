@@ -6,8 +6,10 @@ window.myClips = new Map();
 
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  window.audioCtx = new window.AudioContext();
+  window.audioCtx = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new window.AudioContext();
+  document.querySelector("h1").innerHTML = audioCtx;
+  console.log("theaudiocontext:", audioCtx);
   //create dummy sound
   var oscillator = audioCtx.createOscillator();
   oscillator.frequency.value = 400;
@@ -128,14 +130,15 @@ function playAudio(audioSource) {
   console.log(myClips.size);
   //find the audiobuffer in hash and store in variable
   let requestedSound = myClips.get(audioSource);
-  console.log(requestedSound);
+  console.log("requestedSound", requestedSound);
   //create an AudioBufferSourceNode
   let source = audioCtx.createBufferSource();
+  console.log("source", source);
   //set buffer in the ABSN
   source.buffer = requestedSound;
   //connect ABSN to destination so we can hear it
   source.connect(audioCtx.destination);
-  source.start(0);
+  source.start();
   document.querySelector(`#${audioSource}`).classList.add("playing");
 }
 
