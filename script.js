@@ -83,25 +83,25 @@ document.addEventListener("keydown", e => {
     case "a":
       sound = "clap";
       break;
-    case s:
+    case "s":
       sound = "hi-hat";
       break;
-    case d:
+    case "d":
       sound = "kick";
       break;
-    case f:
+    case "f":
       sound = "openhat";
       break;
-    case g:
+    case "g":
       sound = "orchhit";
       break;
-    case h:
+    case "h":
       sound = "ride";
       break;
-    case j:
+    case "j":
       sound = "snare";
       break;
-    case k:
+    case "k":
       sound = "tom";
       break;
     default:
