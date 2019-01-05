@@ -3,11 +3,11 @@
 //Register the Service Worker
 //create a hash map to store buffers
 window.myClips = new Map();
-window.audioCtx;
+
 //create audio context on initial user interaction
-document.querySelector(".power").addEventListener("touchstart", () => {
+document.querySelector(".power").addEventListener("click", () => {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  audioCtx = new window.AudioContext();
+  window.audioCtx = new window.AudioContext();
   //create dummy sound
   var oscillator = audioCtx.createOscillator();
   oscillator.frequency.value = 400;
