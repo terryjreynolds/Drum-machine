@@ -1,28 +1,32 @@
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
-
-//create audio context
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
 //create a hash map to store buffers
 let myClips = new Map();
-
-// fetch each file and convert to Array
-let soundNames = [
-  "clap",
-  "hi-hat",
-  "kick",
-  "openhat",
-  "orchhit",
-  "ride",
-  "snare",
-  "tom"
-];
-
-soundNames.forEach(name => {
-  prepareToHash(name);
+let audioCtx = {};
+//create audio context on initial user interaction
+document.querySelector(".power").addEventListener("click", () => {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  startHashingBuffers();
 });
+
+function startHashingBuffers() {
+  let soundNames = [
+    "clap",
+    "hi-hat",
+    "kick",
+    "openhat",
+    "orchhit",
+    "ride",
+    "snare",
+    "tom"
+  ];
+
+  soundNames.forEach(name => {
+    prepareToHash(name);
+  });
+}
+// fetch each file and convert to Array
 
 function prepareToHash(soundName) {
   let soundFile = `sounds/${soundName}.wav`;

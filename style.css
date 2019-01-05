@@ -73,6 +73,18 @@ h2 {
   color: whitesmoke;
   text-shadow: 2px 2px black;
 }
+h3 {
+  font-size: calc(12px + (26 - 12) * ((100vw - 300px) / (1600 - 300)));
+  text-align: center;
+  color: rgb(210, 235, 68);
+  border: solid black;
+  margin-left: 40%;
+  margin-right: 40%;
+  cursor: pointer;
+}
+h3:hover {
+  opacity: 0.5;
+}
 p {
   color: rgb(184, 184, 22);
 }
