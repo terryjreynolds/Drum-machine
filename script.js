@@ -6,8 +6,8 @@ window.myClips = new Map();
 
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
-  window.audioCtx = window.AudioContext || window.webkitAudioContext;
-  audioCtx = new window.AudioContext();
+  window.audioCont = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new audioCont();
   document.querySelector("h1").innerHTML = audioCtx;
   console.log("theaudiocontext:", audioCtx);
   //create dummy sound
