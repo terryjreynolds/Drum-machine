@@ -1,21 +1,47 @@
-forceLoad();
-
-function forceLoad() {
-  console.log("in forceload");
-  const a = document.querySelector(".a");
-  console.log("a", a);
-  a.play();
-  setTimeout(function() {
-    console.log("paused");
-    console.log("a ready state:", a.readyState);
-  }, 1000);
-}
-
 //---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
 
 //Register the Service Worker
 
-//----------------Page Logic----------------------
+//create audio context
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+//create a hash map to store buffers
+let myClips = new Map();
+
+// fetch each file and convert to Array
+let soundNames = [
+  "clap",
+  "hi-hat",
+  "kick",
+  "openhat",
+  "orchhit",
+  "ride",
+  "snare",
+  "tom"
+];
+
+soundNames.forEach(name => {
+  prepareToHash(name);
+});
+
+function prepareToHash(soundName) {
+  let soundFile = `sounds/${soundName}.wav`;
+  console.log(soundFile);
+  fetch(soundFile)
+    .then(response => response.arrayBuffer())
+    .then(buffer => {
+      //decode the arrayBuffer as an AudioBuffer
+      audioCtx.decodeAudioData(buffer, decoded => {
+        //add each resulting sound to the hashmap
+
+        updateHash(soundName, decoded);
+      });
+    });
+}
+function updateHash(name, buffer) {
+  console.log(name, buffer);
+  myClips.set(name, buffer);
+}
 
 //loading HD background image
 const bigPic = document.getElementById("HDBgd");
@@ -27,50 +53,81 @@ function showHDImage() {
   little.className = "audienceHidden";
   big.className = "mainBackground";
 }
-const buttons = ["a", "s", "d", "f", "g", "h", "j", "k"];
+
 //listen for mouse clicks
+const buttons = [
+  "clap",
+  "hi-hat",
+  "kick",
+  "openhat",
+  "orchhit",
+  "ride",
+  "snare",
+  "tom"
+];
+
 buttons.map(c => setUpEventListener(c));
 
 function setUpEventListener(listItem) {
-  console.log("its a desktop");
-  document.querySelector(`#${listItem}`).addEventListener("click", function() {
+  document.querySelector(`#${listItem}`).addEventListener("click", () => {
     playAudio(listItem);
   });
 }
 
 //listen for key presses
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", e => {
+  let sound = "";
   const key = e.key;
   console.log("key", key);
-  if (
-    key === "a" ||
-    key === "s" ||
-    key === "d" ||
-    key === "f" ||
-    key === "g" ||
-    key === "h" ||
-    key === "j" ||
-    key === "k"
-  ) {
-    playAudio(key);
+  switch (key) {
+    case "a":
+      sound = "clap";
+      break;
+    case s:
+      sound = "hi-hat";
+      break;
+    case d:
+      sound = "kick";
+      break;
+    case f:
+      sound = "openhat";
+      break;
+    case g:
+      sound = "orchhit";
+      break;
+    case h:
+      sound = "ride";
+      break;
+    case j:
+      sound = "snare";
+      break;
+    case k:
+      sound = "tom";
+      break;
+    default:
+      break;
   }
+
+  playAudio(sound);
 });
 
-function playAudio(letter) {
-  console.log("letter", letter);
-
-  let newSound = document.querySelector(`.${letter}`);
-
-  let key = document.querySelector(`#${letter}`);
-  console.log("key", key);
-
-  newSound.play();
-  newSound.currentTime = 0.1;
-  const readyState = newSound.readyState;
-  console.log("readyState:", readyState);
-  document.getElementsByTagName("h1")[0].innerHTML = `${readyState}`;
-  key.classList.add("playing");
+function playAudio(audioSource) {
+  console.log("letter", audioSource);
+  console.log(myClips.size);
+  //find the audiobuffer in hash and store in variable
+  let requestedSound = myClips.get(audioSource);
+  console.log(requestedSound);
+  //create an AudioBufferSourceNode
+  let source = audioCtx.createBufferSource();
+  //set buffer in the ABSN
+  source.buffer = requestedSound;
+  //connect ABSN to destination so we can hear it
+  source.connect(audioCtx.destination);
+  source.start();
+  document.querySelector(`#${audioSource}`).classList.add("playing");
 }
+
+//remove the class once transition ends
 function removeTransition(e) {
   if (e.propertyName !== "transform") return;
   this.classList.remove("playing");

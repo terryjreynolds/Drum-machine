@@ -84,5 +84,28 @@ if ("serviceWorker" in navigator) {
 
 
 
-
+<audio class="a">
+        <source   src="sounds/clap.wav" type="audio/wav">
+            </audio>
+        <audio class="s">
+          <source src="sounds/hi-hat.wav" type="audio/wav">
+        </audio>
+        <audio class="d">
+          <source src="sounds/kick.mp3" type="audio/mp3">
+        </audio>
+        <audio class="f">
+          <source src="sounds/openhat.wav" type="audio/wav">
+        </audio>
+        <audio class="g">
+          <source src="sounds/orchhit.wav" type="audio/wav">
+        </audio>
+        <audio class="h">
+          <source src="sounds/ride.wav" type="audio/wav">
+        </audio>
+        <audio class="j">
+          <source src="sounds/snare.wav" type="audio/wav">
+        </audio>
+        <audio class="k">
+          <source src="sounds/tom.wav" type="audio/wav">
+        </audio>
 
