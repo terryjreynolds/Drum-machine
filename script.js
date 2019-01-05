@@ -7,17 +7,26 @@ window.myClips = new Map();
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
   window.audioCont = window.AudioContext || window.webkitAudioContext;
+
   audioCtx = new audioCont();
   document.querySelector("h1").innerHTML = audioCtx.state;
   console.log("theaudiocontext:", audioCtx);
-  //create dummy sound
-  var oscillator = audioCtx.createOscillator();
-  oscillator.frequency.value = 400;
-  oscillator.connect(audioCtx.destination);
-  oscillator.start(0);
-  startHashingBuffers();
-  document.querySelector(".power").className = "audienceHidden";
-  oscillator.stop(0.2);
+  if (audioCtx.state === "suspended") {
+    //create dummy sound
+    var oscillator = audioCtx.createOscillator();
+    oscillator.frequency.value = 400;
+    oscillator.connect(audioCtx.destination);
+    oscillator.start(0);
+    oscillator.stop(0.1);
+    document.querySelector(".power").className = "audienceHidden";
+    setTimeout(() => {
+      audioCtx.resume();
+      startHashingBuffers();
+    }, 200);
+  } else {
+    startHashingBuffers();
+    document.querySelector(".power").className = "audienceHidden";
+  }
 });
 
 function startHashingBuffers() {
