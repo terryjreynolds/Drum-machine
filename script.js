@@ -6,7 +6,7 @@ let myClips = new Map();
 let audioCtx;
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
-  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const AudioContext = window.webkitAudioContext;
   audioCtx = new AudioContext();
   startHashingBuffers();
   document.querySelector(".power").className = "audienceHidden";
