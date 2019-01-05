@@ -6,7 +6,15 @@ let myClips = new Map();
 let audioCtx;
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new window.AudioContext();
+  //create dummy sound
+  var oscillator = audioCtx.createOscillator();
+  oscillator.frequency.value = 400;
+  oscillator.connect(audioCtx.destination);
+  oscillator.start(0);
+  oscillator.stop(0.1);
+
   startHashingBuffers();
   document.querySelector(".power").className = "audienceHidden";
 });
