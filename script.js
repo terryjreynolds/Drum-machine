@@ -3,11 +3,12 @@
 //Register the Service Worker
 //create a hash map to store buffers
 let myClips = new Map();
-let audioCtx = {};
+let audioCtx;
 //create audio context on initial user interaction
 document.querySelector(".power").addEventListener("click", () => {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  audioCtx = new AudioContext();
   startHashingBuffers();
+  document.querySelector(".power").className = "audienceHidden";
 });
 
 function startHashingBuffers() {
