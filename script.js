@@ -9,26 +9,25 @@ document.querySelector(".power").addEventListener("click", () => {
   window.audioCont = window.AudioContext || window.webkitAudioContext;
 
   audioCtx = new audioCont();
-  document.querySelector("h1").innerHTML = audioCtx.state;
-  console.log("theaudiocontext:", audioCtx);
-  if (audioCtx.state === "suspended") {
-    //create dummy sound
-    var oscillator = audioCtx.createOscillator();
-    oscillator.frequency.value = 400;
-    oscillator.connect(audioCtx.destination);
-    oscillator.start(0);
-    oscillator.stop(0.1);
-    document.querySelector(".power").className = "audienceHidden";
-    setTimeout(() => {
-      audioCtx.resume();
+  document.querySelector(".power").className = "audienceHidden";
+  webAudioTouchUnlock(audioCtx.state);
+});
+function webAudioTouchUnlock(context) {
+  if (context.state === "suspended" && "ontouchstart" in window) {
+    const unlock = function() {
+      context.resume().then(function() {
+        document.body.removeEventListener("touchstart", unlock);
+        document.body.removeEventListener("touchend", unlock);
+      });
       startHashingBuffers();
-    }, 200);
+    };
+
+    document.body.addEventListener("touchstart", unlock, false);
+    document.body.addEventListener("touchend", unlock, false);
   } else {
     startHashingBuffers();
-    document.querySelector(".power").className = "audienceHidden";
   }
-});
-
+}
 function startHashingBuffers() {
   let soundNames = [
     "clap",
