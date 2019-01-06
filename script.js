@@ -19,6 +19,7 @@ function webAudioTouchUnlock(context) {
       context.resume().then(function() {
         document.body.removeEventListener("touchstart", unlock);
         document.body.removeEventListener("touchend", unlock);
+        document.querySelector("h1").innerHTML = audioCtx.state;
       });
     };
     document.body.addEventListener("touchstart", unlock, false);
