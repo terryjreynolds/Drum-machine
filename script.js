@@ -14,7 +14,8 @@ document.querySelector(".power").addEventListener("click", () => {
 });
 function webAudioTouchUnlock(context) {
   if (context.state === "suspended") {
-    const unlock = function() {
+    startHashingBuffers();
+    let unlock = function() {
       context.resume().then(function() {
         document.body.removeEventListener("touchstart", unlock);
         document.body.removeEventListener("touchend", unlock);
@@ -22,7 +23,6 @@ function webAudioTouchUnlock(context) {
     };
     document.body.addEventListener("touchstart", unlock, false);
     document.body.addEventListener("touchend", unlock, false);
-    startHashingBuffers();
   } else {
     startHashingBuffers();
   }
