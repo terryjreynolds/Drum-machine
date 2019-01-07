@@ -5,28 +5,35 @@
 window.myClips = new Map();
 
 //create audio context on initial user interaction
+
 document.querySelector(".power").addEventListener("click", () => {
   window.audioCont = window.AudioContext || window.webkitAudioContext;
 
-  audioCtx = new audioCont();
+  window.audioCtx = new audioCont();
   document.querySelector(".power").className = "audienceHidden";
-  webAudioTouchUnlock(audioCtx.state);
+
+  startHashingBuffers();
+  webAudioTouchUnlock();
+  document.querySelector("h1").innerHTML = audioCtx.state;
 });
-function webAudioTouchUnlock(context) {
-  if (context.state === "suspended") {
-    startHashingBuffers();
-    function unlock() {
-      context.resume().then(function() {
-        document.body.removeEventListener("touchstart", unlock);
-        document.body.removeEventListener("touchend", unlock);
-        document.querySelector("h1").innerHTML = context;
-      });
-    }
-    document.body.addEventListener("touchstart", unlock, false);
-    document.body.addEventListener("touchend", unlock, false);
-  } else {
-    startHashingBuffers();
-  }
+
+function webAudioTouchUnlock() {
+  window.addEventListener(
+    "touchstart",
+    function() {
+      // create empty buffer
+      var buffer = audioCtx.createBuffer(1, 1, 22050);
+      var source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+
+      // connect to output (your speakers)
+      source.connect(audioCtx.destination);
+
+      // play the file
+      source.noteOn(0);
+    },
+    false
+  );
 }
 function startHashingBuffers() {
   let soundNames = [
