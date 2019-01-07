@@ -34,6 +34,22 @@ function webAudioTouchUnlock() {
     },
     false
   );
+  window.addEventListener(
+    "touchend",
+    function() {
+      // create empty buffer
+      var buffer = audioCtx.createBuffer(1, 1, 22050);
+      var source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+
+      // connect to output (your speakers)
+      source.connect(audioCtx.destination);
+
+      // play the file
+      source.noteOn(0);
+    },
+    false
+  );
 }
 function startHashingBuffers() {
   let soundNames = [
