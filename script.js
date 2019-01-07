@@ -7,35 +7,17 @@ window.audioCont = window.AudioContext || window.webkitAudioContext;
 
 window.audioCtx = new audioCont();
 //create audio context on initial user interaction
-if (audioCtx.state !== "suspended") {
-  document.querySelector(".power").addEventListener("click", () => {
-    document.querySelector(".power").className = "audienceHidden";
 
-    startHashingBuffers();
+document.querySelector(".power").addEventListener("click", () => {
+  audioCtx.resume().then(() => {
+    document.querySelector(".power").className = "audienceHidden";
   });
-} else {
-  webAudioTouchUnlock();
+
   startHashingBuffers();
-}
+});
+
 function webAudioTouchUnlock() {
   audioCtx.resume();
-  window.addEventListener(
-    "touchstart",
-    function() {
-      // create empty buffer
-      var buffer = audioCtx.createBuffer(1, 1, 22050);
-      var source = audioCtx.createBufferSource();
-      source.buffer = buffer;
-
-      // connect to output (your speakers)
-      source.connect(audioCtx.destination);
-
-      // play the file
-      source.noteOn(0);
-    },
-    false
-  );
-  document.querySelector("h1").innerHTML = "ya" + audioCtx.state;
 }
 function startHashingBuffers() {
   let soundNames = [
