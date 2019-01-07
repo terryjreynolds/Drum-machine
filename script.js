@@ -10,10 +10,9 @@ window.audioCtx = new audioCont();
 
 document.querySelector(".power").addEventListener("click", () => {
   audioCtx.resume().then(() => {
+    startHashingBuffers();
     document.querySelector(".power").className = "audienceHidden";
   });
-
-  startHashingBuffers();
 });
 
 function webAudioTouchUnlock() {
