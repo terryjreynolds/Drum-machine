@@ -3,20 +3,20 @@
 //Register the Service Worker
 //create a hash map to store buffers
 window.myClips = new Map();
+window.audioCont = window.AudioContext || window.webkitAudioContext;
 
+window.audioCtx = new audioCont();
 //create audio context on initial user interaction
+if (audioCtx.state !== "suspended") {
+  document.querySelector(".power").addEventListener("click", () => {
+    document.querySelector(".power").className = "audienceHidden";
 
-document.querySelector(".power").addEventListener("click", () => {
-  window.audioCont = window.AudioContext || window.webkitAudioContext;
-
-  window.audioCtx = new audioCont();
-  document.querySelector(".power").className = "audienceHidden";
-
-  startHashingBuffers();
+    startHashingBuffers();
+  });
+} else {
   webAudioTouchUnlock();
-  document.querySelector("h1").innerHTML = audioCtx.state;
-});
-
+  startHashingBuffers();
+}
 function webAudioTouchUnlock() {
   window.addEventListener(
     "touchstart",
@@ -47,6 +47,7 @@ function webAudioTouchUnlock() {
 
       // play the file
       source.noteOn(0);
+      document.querySelector("h1").innerHTML = audioCtx.state;
     },
     false
   );
