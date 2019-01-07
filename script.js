@@ -15,13 +15,13 @@ document.querySelector(".power").addEventListener("click", () => {
 function webAudioTouchUnlock(context) {
   if (context.state === "suspended") {
     startHashingBuffers();
-    let unlock = function() {
+    function unlock() {
       context.resume().then(function() {
         document.body.removeEventListener("touchstart", unlock);
         document.body.removeEventListener("touchend", unlock);
         document.querySelector("h1").innerHTML = context;
       });
-    };
+    }
     document.body.addEventListener("touchstart", unlock, false);
     document.body.addEventListener("touchend", unlock, false);
   } else {
