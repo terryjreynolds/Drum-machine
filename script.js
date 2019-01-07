@@ -3,18 +3,24 @@
 //Register the Service Worker
 //create a hash map to store buffers
 window.myClips = new Map();
-window.audioCont = window.AudioContext || window.webkitAudioContext;
 
-window.audioCtx = new audioCont();
 //create audio context on initial user interaction
 
 document.querySelector(".power").addEventListener("click", () => {
-  audioCtx.resume().then(() => {
-    startHashingBuffers();
-    document.querySelector(".power").className = "audienceHidden";
+  createAudioContext().then(() => {
+    document.querySelector(".power").innerHTML = "unmute";
+    document.querySelector(".power").addEventListener("click", () => {
+      audioCtx.resume().then(() => {
+        startHashingBuffers();
+      });
+    });
   });
 });
+function createAudioContext() {
+  window.audioCont = window.AudioContext || window.webkitAudioContext;
 
+  window.audioCtx = new audioCont();
+}
 function webAudioTouchUnlock() {
   audioCtx.resume();
 }
