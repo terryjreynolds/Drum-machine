@@ -18,6 +18,7 @@ if (audioCtx.state !== "suspended") {
   startHashingBuffers();
 }
 function webAudioTouchUnlock() {
+  audioCtx.resume();
   window.addEventListener(
     "touchstart",
     function() {
@@ -34,23 +35,7 @@ function webAudioTouchUnlock() {
     },
     false
   );
-  window.addEventListener(
-    "touchend",
-    function() {
-      // create empty buffer
-      var buffer = audioCtx.createBuffer(1, 1, 22050);
-      var source = audioCtx.createBufferSource();
-      source.buffer = buffer;
-
-      // connect to output (your speakers)
-      source.connect(audioCtx.destination);
-
-      // play the file
-      source.noteOn(0);
-      document.querySelector("h1").innerHTML = audioCtx.state;
-    },
-    false
-  );
+  document.querySelector("h1").innerHTML = "ya" + audioCtx.state;
 }
 function startHashingBuffers() {
   let soundNames = [
