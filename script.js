@@ -1,4 +1,5 @@
 //create a hash map to store buffers
+window.scrollTo(0, 1);
 window.myClips = new Map();
 //create an audioContext on window initialization
 //webkit choosen for ios
