@@ -1,12 +1,13 @@
 //create a hash map to store buffers
 window.myClips = new Map();
 //create an audioContext on window initialization
-//
+//webkit choosen for ios
 window.audioCont = window.AudioContext || window.webkitAudioContext;
 
 window.audioCtx = new audioCont();
-document.querySelector("h1").innerHTML = audioCont;
+
 startHashingBuffers();
+
 function startHashingBuffers() {
   let soundNames = [
     "clap",
@@ -23,8 +24,7 @@ function startHashingBuffers() {
     prepareToHash(name);
   });
 }
-// fetch each file and convert to Array
-
+//decode sound files and store in hash
 function prepareToHash(soundName) {
   let soundFile = `sounds/${soundName}.wav`;
   console.log(soundFile);
