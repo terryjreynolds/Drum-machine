@@ -6,7 +6,7 @@ window.myClips = new Map();
 window.audioCont = window.AudioContext || window.webkitAudioContext;
 
 window.audioCtx = new audioCont();
-
+startHashingBuffers();
 function startHashingBuffers() {
   let soundNames = [
     "clap",
@@ -126,7 +126,7 @@ function playAudio(audioSource) {
   //connect ABSN to destination so we can hear it
   source.connect(audioCtx.destination);
   document.querySelector(`#${audioSource}`).classList.add("playing");
-  if (audioCtx !== webkitAudioContext) {
+  if (audioCont !== "webkitAudioContext") {
     source.start();
   } else {
     source.noteOn(0);
