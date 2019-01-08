@@ -3,27 +3,10 @@
 //Register the Service Worker
 //create a hash map to store buffers
 window.myClips = new Map();
+window.audioCont = window.AudioContext || window.webkitAudioContext;
 
-//create audio context on initial user interaction
+window.audioCtx = new audioCont();
 
-document.querySelector(".power").addEventListener("click", () => {
-  createAudioContext().then(() => {
-    document.querySelector(".power").innerHTML = "unmute";
-    document.querySelector(".power").addEventListener("click", () => {
-      audioCtx.resume().then(() => {
-        startHashingBuffers();
-      });
-    });
-  });
-});
-function createAudioContext() {
-  window.audioCont = window.AudioContext || window.webkitAudioContext;
-
-  window.audioCtx = new audioCont();
-}
-function webAudioTouchUnlock() {
-  audioCtx.resume();
-}
 function startHashingBuffers() {
   let soundNames = [
     "clap",
@@ -142,8 +125,12 @@ function playAudio(audioSource) {
   source.buffer = requestedSound;
   //connect ABSN to destination so we can hear it
   source.connect(audioCtx.destination);
-  source.start();
   document.querySelector(`#${audioSource}`).classList.add("playing");
+  if (audioCtx !== webkitAudioContext) {
+    source.start();
+  } else {
+    source.noteOn(0);
+  }
 }
 
 //remove the class once transition ends
