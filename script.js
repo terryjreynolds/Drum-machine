@@ -1,11 +1,11 @@
-//---------------SERVICE WORKERS TO CACHE SOUND EFFECTS----------
-
-//Register the Service Worker
 //create a hash map to store buffers
 window.myClips = new Map();
+//create an audioContext on window initialization
+//
 window.audioCont = window.AudioContext || window.webkitAudioContext;
 
 window.audioCtx = new audioCont();
+document.querySelector("h1").innerHTML = audioCont;
 startHashingBuffers();
 function startHashingBuffers() {
   let soundNames = [
