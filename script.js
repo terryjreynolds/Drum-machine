@@ -126,11 +126,7 @@ function playAudio(audioSource) {
   //connect ABSN to destination so we can hear it
   source.connect(audioCtx.destination);
   document.querySelector(`#${audioSource}`).classList.add("playing");
-  if (audioCont !== "webkitAudioContext") {
-    source.start();
-  } else {
-    source.noteOn(0);
-  }
+  source.start(0);
 }
 
 //remove the class once transition ends

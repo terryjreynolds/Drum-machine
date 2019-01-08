@@ -149,3 +149,11 @@ if ("serviceWorker" in navigator) {
 
 <link rel="shortcut icon" href="">
     <link rel="manifest" href="./manifest.json">
+
+
+
+    if (audioCont !== "webkitAudioContext") {
+    source.start();
+  } else {
+    source.noteOn(0);
+  }
